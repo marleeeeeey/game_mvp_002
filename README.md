@@ -1,11 +1,11 @@
 # Game MVP 002
 
-TODO (short description)
+TODO (short description): https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-godot-4/
 
 - 8 Days of development
 - Development start date: 2024-05-24
 - MVP planned release date: 2024-06-01
-- Name: Turret Commander
+- Name: TODO
 - Learning goal: TODO
 - Release link: TODO
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=11 format=3 uid="uid://8yocrc6iicxu"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/player.gd" id="1_a5bl7"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://Sprites/Player_metroid.png" id="1_jnwq3"]
+[ext_resource type="Texture2D" uid="uid://b3fq3kvklme8e" path="res://Sprites/gun_1.png" id="3_i8dtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
 radius = 7.0
@@ -178,7 +179,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a5bl7")
-speed = 100
+speed = 85
 
 [node name="player_collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
@@ -207,3 +208,13 @@ debug_color = Color(0.87265, 0.233324, 0.647269, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+
+[node name="gun_handler" type="Node2D" parent="."]
+position = Vector2(0, 13)
+
+[node name="gun_sprite" type="Sprite2D" parent="gun_handler"]
+position = Vector2(6, 0)
+texture = ExtResource("3_i8dtk")
+
+[node name="bullet_point" type="Marker2D" parent="gun_handler"]
+position = Vector2(13, 0)

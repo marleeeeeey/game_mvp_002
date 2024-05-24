@@ -6,3 +6,11 @@
 
 [node name="Player" parent="." instance=ExtResource("1_lyo5h")]
 position = Vector2(241, 192)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+z_as_relative = false
+offset_left = 302.0
+offset_top = 168.0
+offset_right = 342.0
+offset_bottom = 208.0

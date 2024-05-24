@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=10 format=3 uid="uid://8yocrc6iicxu"]
 
+[ext_resource type="Script" path="res://Entities/entities_scripts/player.gd" id="1_a5bl7"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://Sprites/Player_metroid.png" id="1_jnwq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
@@ -176,6 +177,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_x5ctw"]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a5bl7")
+speed = 100
 
 [node name="player_collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)

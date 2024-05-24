@@ -39,10 +39,8 @@ func animations():
 	if input_movement != Vector2.ZERO:
 		if input_movement.x > 0: 
 			$anim.play("Move")
-			$Sprite2D.flip_h = false
 		if input_movement.x < 0: 
 			$anim.play("Move")
-			$Sprite2D.flip_h = true
 	
 	if input_movement == Vector2.ZERO:
 		$anim.play("Idle")
@@ -54,7 +52,10 @@ func target_mouse():
 	gun.look_at(mouse_movement)
 	rot = rad_to_deg((mouse_movement - pos).angle())
 	
+	# Flip gun
 	if rot >= -90 and rot <= 90:
 		gun_spr.flip_v = false
+		$Sprite2D.flip_h = false
 	else:
 		gun_spr.flip_v = true
+		$Sprite2D.flip_h = true

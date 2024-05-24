@@ -201,3 +201,6 @@ position = Vector2(0, 13)
 shape = SubResource("CircleShape2D_x5ctw")
 disabled = true
 debug_color = Color(0.87265, 0.233324, 0.647269, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)

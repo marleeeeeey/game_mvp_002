@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var bullet_scene = preload("res://Entities/Scenes/Bullet/bullet_1.tscn")
+
 @export var speed: int
 var input_movement = Vector2()
 
@@ -9,9 +11,10 @@ var input_movement = Vector2()
 var pos
 var rot
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass  # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,26 +25,29 @@ func _process(delta: float) -> void:
 
 func movement(delta):
 	animations()
-	
+
 	# Return normalized vector
 	input_movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
+
 	if input_movement != Vector2.ZERO:
 		velocity = input_movement * speed
-	
+
 	if input_movement == Vector2.ZERO:
 		velocity = Vector2.ZERO
-		
+
+	if Input.is_action_just_pressed("ui_shoot"):
+		instance_bullet()
+
 	move_and_slide()
 
 
 func animations():
 	if input_movement != Vector2.ZERO:
-		if input_movement.x > 0: 
+		if input_movement.x > 0:
 			$anim.play("Move")
-		if input_movement.x < 0: 
+		if input_movement.x < 0:
 			$anim.play("Move")
-	
+
 	if input_movement == Vector2.ZERO:
 		$anim.play("Idle")
 
@@ -51,7 +57,7 @@ func target_mouse():
 	pos = global_position
 	gun.look_at(mouse_movement)
 	rot = rad_to_deg((mouse_movement - pos).angle())
-	
+
 	# Flip gun
 	if rot >= -90 and rot <= 90:
 		gun_spr.flip_v = false
@@ -59,3 +65,12 @@ func target_mouse():
 	else:
 		gun_spr.flip_v = true
 		$Sprite2D.flip_h = true
+
+
+func instance_bullet():
+	var bullet = bullet_scene.instantiate()
+	# Use global coordinates to calculate the direction
+	bullet.direction = bullet_point.global_position - gun.global_position
+	bullet.global_position = bullet_point.global_position
+	get_tree().root.add_child(bullet)
+	

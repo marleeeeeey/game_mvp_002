@@ -182,11 +182,12 @@ script = ExtResource("1_a5bl7")
 speed = 85
 
 [node name="player_collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_sedtn")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
 texture = ExtResource("1_jnwq3")
 hframes = 8
 vframes = 7
@@ -199,6 +200,7 @@ libraries = {
 autoplay = "Idle"
 
 [node name="hitbox" type="Area2D" parent="."]
+position = Vector2(0, -13)
 
 [node name="hitbox_collider" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 13)
@@ -207,10 +209,10 @@ disabled = true
 debug_color = Color(0.87265, 0.233324, 0.647269, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -13)
 zoom = Vector2(4, 4)
 
 [node name="gun_handler" type="Node2D" parent="."]
-position = Vector2(0, 13)
 
 [node name="gun_sprite" type="Sprite2D" parent="gun_handler"]
 position = Vector2(6, 0)

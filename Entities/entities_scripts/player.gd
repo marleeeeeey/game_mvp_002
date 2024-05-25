@@ -76,18 +76,19 @@ func dead():
 
 
 func target_mouse():
-	var mouse_movement = get_global_mouse_position()
-	pos = global_position
-	gun.look_at(mouse_movement)
-	rot = rad_to_deg((mouse_movement - pos).angle())
+	if is_dead == false:
+		var mouse_movement = get_global_mouse_position()
+		pos = global_position
+		gun.look_at(mouse_movement)
+		rot = rad_to_deg((mouse_movement - pos).angle())
 
-	# Flip gun
-	if rot >= -90 and rot <= 90:
-		gun_spr.flip_v = false
-		$Sprite2D.flip_h = false
-	else:
-		gun_spr.flip_v = true
-		$Sprite2D.flip_h = true
+		# Flip gun
+		if rot >= -90 and rot <= 90:
+			gun_spr.flip_v = false
+			$Sprite2D.flip_h = false
+		else:
+			gun_spr.flip_v = true
+			$Sprite2D.flip_h = true
 
 
 func instance_bullet():

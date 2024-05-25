@@ -226,7 +226,7 @@ debug_color = Color(0.87265, 0.233324, 0.647269, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -13)
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="gun_handler" type="Node2D" parent="."]
 

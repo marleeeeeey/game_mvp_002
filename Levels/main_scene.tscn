@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bob6ay6manj1p"]
+[gd_scene load_steps=3 format=3 uid="uid://bob6ay6manj1p"]
 
 [ext_resource type="PackedScene" uid="uid://8yocrc6iicxu" path="res://Entities/Scenes/Player/player.tscn" id="1_lyo5h"]
+[ext_resource type="PackedScene" uid="uid://cvn2ym6itgaa3" path="res://Interactables/scenes/dead_area.tscn" id="2_1e4o3"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -14,3 +15,6 @@ offset_left = 302.0
 offset_top = 168.0
 offset_right = 342.0
 offset_bottom = 208.0
+
+[node name="DeadArea" parent="." instance=ExtResource("2_1e4o3")]
+position = Vector2(133, 225)

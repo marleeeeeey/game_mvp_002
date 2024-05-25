@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+var current_state = PlayerStates.MOVE
+enum PlayerStates {MOVE, DEAD}
+var is_dead = false
+
 @onready var bullet_scene = preload("res://Entities/Scenes/Bullet/bullet_1.tscn")
 
 @export var speed: int
@@ -12,15 +16,21 @@ var pos
 var rot
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass  # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if PlayerData.health <= 0:
+		current_state = PlayerStates.DEAD
+	
 	target_mouse()
-	movement(delta)
+	
+	match current_state:
+		PlayerStates.MOVE:
+			movement(delta)
+		PlayerStates.DEAD:
+			dead()
 
 
 func movement(delta):
@@ -52,6 +62,19 @@ func animations():
 		$anim.play("Idle")
 
 
+func dead():
+	is_dead = true
+	velocity = Vector2.ZERO
+	gun.visible = false
+	$anim.play("Dead")
+	# Wait end of animation
+	await get_tree().create_timer($anim.current_animation_length).timeout
+	if get_tree():
+		get_tree().reload_current_scene()
+		PlayerData.health += 4
+		is_dead = false
+
+
 func target_mouse():
 	var mouse_movement = get_global_mouse_position()
 	pos = global_position
@@ -74,3 +97,6 @@ func instance_bullet():
 	bullet.global_position = bullet_point.global_position
 	get_tree().root.add_child(bullet)
 	
+	
+func reset_states():
+	current_state = PlayerStates.MOVE

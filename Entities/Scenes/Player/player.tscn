@@ -193,7 +193,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_x5ctw"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 5
+collision_mask = 15
 script = ExtResource("1_a5bl7")
 speed = 85
 

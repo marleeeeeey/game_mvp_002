@@ -52,14 +52,10 @@ func movement(delta):
 
 
 func animations():
-	if input_movement != Vector2.ZERO:
-		if input_movement.x > 0:
-			$anim.play("Move")
-		if input_movement.x < 0:
-			$anim.play("Move")
-
-	if input_movement == Vector2.ZERO:
+	if input_movement.length() == 0:
 		$anim.play("Idle")
+	else:
+		$anim.play("Move")
 
 
 func dead():

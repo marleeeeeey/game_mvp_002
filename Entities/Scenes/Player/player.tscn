@@ -193,6 +193,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_x5ctw"]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_mask = 15
 script = ExtResource("1_a5bl7")
 speed = 85
@@ -203,6 +205,7 @@ shape = SubResource("CircleShape2D_sedtn")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -13)
 texture = ExtResource("1_jnwq3")
 hframes = 8

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=12 format=3 uid="uid://8yocrc6iicxu"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/player.gd" id="1_a5bl7"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://Sprites/Player_metroid.png" id="1_jnwq3"]
 [ext_resource type="Texture2D" uid="uid://b3fq3kvklme8e" path="res://Sprites/gun_1.png" id="3_i8dtk"]
+[ext_resource type="PackedScene" uid="uid://glnym367rjgv" path="res://UI/ui_scenes/mouse_icon.tscn" id="4_yjdr5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
 radius = 7.0
@@ -220,3 +221,5 @@ texture = ExtResource("3_i8dtk")
 
 [node name="bullet_point" type="Marker2D" parent="gun_handler"]
 position = Vector2(13, 0)
+
+[node name="MouseIcon" parent="." instance=ExtResource("4_yjdr5")]

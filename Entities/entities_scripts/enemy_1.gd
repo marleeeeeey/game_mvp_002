@@ -4,6 +4,7 @@ extends CharacterBody2D
 # 2. Apply force into this direction.
 # 3. Shift the girection once again.
 
+@onready var fx_scene = preload("res://Entities/Scenes/FX/fx_scene.tscn")
 @export var speed = 20
 
 enum EnemyDirection { RIGHT, LEFT, UP, DOWN }
@@ -53,7 +54,6 @@ func move_down():
 
 func choose_direction():
 	change_direction = randi() % 4
-	print(change_direction)
 	random_direction()
 
 
@@ -72,3 +72,15 @@ func random_direction():
 func _on_timer_timeout() -> void:
 	choose_direction()
 	$Timer.start()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Bullet"):
+		instance_fx()
+		queue_free()
+
+
+func instance_fx():
+	var fx = fx_scene.instantiate()
+	fx.global_position = global_position
+	get_tree().root.add_child(fx)

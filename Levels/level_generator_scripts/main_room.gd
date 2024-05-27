@@ -1,10 +1,11 @@
 extends Node2D
 
-@onready var player_scene = preload("res://Entities/Scenes/Player/player.tscn")
+@onready var player_scene: PackedScene = preload("res://Entities/Scenes/Player/player.tscn")
+@onready var exit_scene: PackedScene = preload("res://Interactables/scenes/exit.tscn")
 @onready var tilemap = $TileMap
 @export var border = Rect2(1, 1, 140, 120)
-var walker
-var map # step_history - array of positions. TODO: rename variable
+var walker: WalkerRoom = null
+var map: Array = [] # step_history - array of positions. TODO: rename variable
 
 var ground_layer = 0 # Reference specific png in tilemap. 0 - is the first.
 
@@ -37,6 +38,7 @@ func generate_level():
 	tilemap.set_cells_terrain_path(ground_layer, using_cells, ground_layer, ground_layer, false)
 	
 	instance_player()
+	instance_exit()
 
 
 func _input(event):
@@ -47,4 +49,12 @@ func _input(event):
 func instance_player():
 	var player = player_scene.instantiate()
 	add_child(player)
+	# Spawn player in the first room.
 	player.position = map.pop_front() * 16
+
+
+func instance_exit():
+	var exit = exit_scene.instantiate()
+	add_child(exit)
+	exit.position = walker.get_end_room().position * 16
+	

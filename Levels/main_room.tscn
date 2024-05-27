@@ -628,7 +628,8 @@ texture = ExtResource("6_d1pul")
 9:6/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSet" id="TileSet_57luf"]
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 35
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.909814, 0.228965, 0.775834, 1)

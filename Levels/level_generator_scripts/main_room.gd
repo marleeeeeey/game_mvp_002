@@ -1,10 +1,10 @@
 extends Node2D
 
-
+@onready var player_scene = preload("res://Entities/Scenes/Player/player.tscn")
 @onready var tilemap = $TileMap
 @export var border = Rect2(1, 1, 140, 120)
 var walker
-var map
+var map # step_history - array of positions. TODO: rename variable
 
 var ground_layer = 0 # Reference specific png in tilemap. 0 - is the first.
 
@@ -35,8 +35,16 @@ func generate_level():
 	# so that they use the given terrain for the given terrain_set.
 	tilemap.set_cells_terrain_connect(ground_layer, using_cells, ground_layer, ground_layer, false)
 	tilemap.set_cells_terrain_path(ground_layer, using_cells, ground_layer, ground_layer, false)
+	
+	instance_player()
 
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_accept"):
 		get_tree().reload_current_scene()
+
+
+func instance_player():
+	var player = player_scene.instantiate()
+	add_child(player)
+	player.position = map.pop_front() * 16

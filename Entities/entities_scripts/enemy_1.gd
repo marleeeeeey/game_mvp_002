@@ -8,10 +8,12 @@ extends CharacterBody2D
 @onready var ammo_scene = preload("res://Interactables/scenes/ammo_1.tscn")
 @export var speed = 20
 
-enum EnemyDirection { RIGHT, LEFT, UP, DOWN }
+enum EnemyDirection { RIGHT, LEFT, UP, DOWN, CHASE }
 var new_direction = EnemyDirection.RIGHT
 var change_direction
 
+# TODO: ???
+@onready var target = get_node("../Player")
 
 func _ready() -> void:
 	choose_direction()
@@ -27,6 +29,8 @@ func _process(delta: float) -> void:
 			move_up()
 		EnemyDirection.DOWN:
 			move_down()
+		EnemyDirection.CHASE:
+			chase_state()
 
 
 func move_right():
@@ -92,3 +96,21 @@ func instance_ammo():
 	var ammo = ammo_scene.instantiate()
 	ammo.global_position = global_position
 	get_tree().root.add_child(ammo)
+
+
+func chase_state():
+	var chase_speed = 60
+	velocity = position.direction_to(target.global_position) * chase_speed
+	animation()
+	move_and_slide()
+
+func animation():
+	if velocity > Vector2.ZERO:
+		$anim.play("move_right")
+	if velocity < Vector2.ZERO:
+		$anim.play("move_left")
+
+
+func _on_chase_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Follow"):
+		new_direction = EnemyDirection.CHASE

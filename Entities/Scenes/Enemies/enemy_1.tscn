@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://kk5ce2uy4m72"]
+[gd_scene load_steps=12 format=3 uid="uid://kk5ce2uy4m72"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/enemy_1.gd" id="1_htg7u"]
 [ext_resource type="Texture2D" uid="uid://bw7oe3c5u2a3x" path="res://Sprites/enemy_rpg.png" id="1_u5cwl"]
@@ -100,6 +100,9 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blmtg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qutld"]
+size = Vector2(34, 31)
+
 [node name="Enemy1" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -136,5 +139,15 @@ debug_color = Color(0.787806, 0.151034, 0.252982, 0.42)
 wait_time = 2.0
 autostart = true
 
+[node name="ChaseBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseBox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_qutld")
+debug_color = Color(0.590566, 0.74211, 0.143952, 0.42)
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="ChaseBox" to="." method="_on_chase_box_area_entered"]

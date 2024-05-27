@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bob6ay6manj1p"]
+[gd_scene load_steps=7 format=3 uid="uid://bob6ay6manj1p"]
 
 [ext_resource type="Script" path="res://Levels/level_generator_scripts/main_room.gd" id="1_yltm1"]
-[ext_resource type="PackedScene" uid="uid://cvn2ym6itgaa3" path="res://Interactables/scenes/dead_area.tscn" id="3_cwtpr"]
 [ext_resource type="Script" path="res://UI/ui_scripts/GUI.gd" id="4_586f0"]
 [ext_resource type="Texture2D" uid="uid://d1u13tn6safuh" path="res://Sprites/HeartSpriteSheet.png" id="5_1rfns"]
 [ext_resource type="Texture2D" uid="uid://b737hvuu6d4ri" path="res://Sprites/complex_tilemap_16px.png" id="6_d1pul"]
@@ -638,9 +637,6 @@ sources/0 = SubResource("TileSetAtlasSource_44fad")
 [node name="MainRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_yltm1")
-
-[node name="DeadArea" parent="." instance=ExtResource("3_cwtpr")]
-position = Vector2(133, 225)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 script = ExtResource("4_586f0")

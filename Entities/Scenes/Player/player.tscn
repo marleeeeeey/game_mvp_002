@@ -241,3 +241,9 @@ texture = ExtResource("3_i8dtk")
 position = Vector2(13, 0)
 
 [node name="MouseIcon" parent="." instance=ExtResource("4_yjdr5")]
+
+[node name="trail_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="trail_timer" to="." method="_on_trail_timer_timeout"]

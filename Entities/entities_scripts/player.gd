@@ -5,6 +5,7 @@ enum PlayerStates {MOVE, DEAD}
 var is_dead = false
 
 @onready var bullet_scene = preload("res://Entities/Scenes/Bullet/bullet_1.tscn")
+@onready var trail_scene = preload("res://Entities/Scenes/FX/scent_trail.tscn")
 
 @export var speed: int
 var input_movement = Vector2()
@@ -98,3 +99,14 @@ func instance_bullet():
 	
 func reset_states():
 	current_state = PlayerStates.MOVE
+
+
+func instance_trail():
+	var trail = trail_scene.instantiate()
+	trail.global_position = global_position
+	get_tree().root.add_child(trail)
+
+
+func _on_trail_timer_timeout() -> void:
+	instance_trail()
+	$trail_timer.start()

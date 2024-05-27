@@ -5,6 +5,7 @@ extends CharacterBody2D
 # 3. Shift the girection once again.
 
 @onready var fx_scene = preload("res://Entities/Scenes/FX/fx_scene.tscn")
+@onready var ammo_scene = preload("res://Interactables/scenes/ammo_1.tscn")
 @export var speed = 20
 
 enum EnemyDirection { RIGHT, LEFT, UP, DOWN }
@@ -77,6 +78,7 @@ func _on_timer_timeout() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullet"):
 		instance_fx()
+		instance_ammo()
 		queue_free()
 
 
@@ -84,3 +86,9 @@ func instance_fx():
 	var fx = fx_scene.instantiate()
 	fx.global_position = global_position
 	get_tree().root.add_child(fx)
+
+
+func instance_ammo():
+	var ammo = ammo_scene.instantiate()
+	ammo.global_position = global_position
+	get_tree().root.add_child(ammo)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=15 format=3 uid="uid://8yocrc6iicxu"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/player.gd" id="1_a5bl7"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://Sprites/Player_metroid.png" id="1_jnwq3"]
 [ext_resource type="Shader" path="res://Shaders/hurt.gdshader" id="2_uasbo"]
 [ext_resource type="Texture2D" uid="uid://b3fq3kvklme8e" path="res://Sprites/gun_1.png" id="3_i8dtk"]
+[ext_resource type="Script" path="res://Entities/entities_scripts/camera.gd" id="4_j0l8j"]
 [ext_resource type="PackedScene" uid="uid://glnym367rjgv" path="res://UI/ui_scenes/mouse_icon.tscn" id="4_yjdr5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
@@ -238,6 +239,10 @@ debug_color = Color(0.87265, 0.233324, 0.647269, 0.42)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -13)
 zoom = Vector2(3, 3)
+script = ExtResource("4_j0l8j")
+
+[node name="CameraShake" type="Timer" parent="Camera2D"]
+autostart = true
 
 [node name="gun_handler" type="Node2D" parent="."]
 
@@ -255,4 +260,5 @@ wait_time = 0.1
 autostart = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="Camera2D/CameraShake" to="Camera2D" method="_on_camera_shake_timeout"]
 [connection signal="timeout" from="trail_timer" to="." method="_on_trail_timer_timeout"]

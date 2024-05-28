@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	Globals.camera.screen_shake(5, 5, 0.05)
 	instance_fx()
 	queue_free()
 

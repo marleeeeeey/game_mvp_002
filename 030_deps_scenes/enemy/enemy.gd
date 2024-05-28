@@ -13,8 +13,7 @@ enum EnemyDirection { RIGHT, LEFT, UP, DOWN, CHASE }
 var new_direction = EnemyDirection.RIGHT
 var change_direction
 
-# TODO: remove this dependency.
-@onready var target = $"../Player"
+var following_global_position = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -102,7 +101,7 @@ func instance_ammo():
 
 func chase_state():
 	var chase_speed = 60
-	velocity = position.direction_to(target.global_position) * chase_speed
+	velocity = position.direction_to(following_global_position) * chase_speed
 	animation()
 	move_and_slide()
 
@@ -116,4 +115,5 @@ func animation():
 
 func _on_chase_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Follow"):
+		following_global_position = area.global_position
 		new_direction = EnemyDirection.CHASE

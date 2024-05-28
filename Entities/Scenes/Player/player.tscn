@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=16 format=3 uid="uid://8yocrc6iicxu"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/player.gd" id="1_a5bl7"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://Sprites/Player_metroid.png" id="1_jnwq3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b3fq3kvklme8e" path="res://Sprites/gun_1.png" id="3_i8dtk"]
 [ext_resource type="Script" path="res://Entities/entities_scripts/camera.gd" id="4_j0l8j"]
 [ext_resource type="PackedScene" uid="uid://glnym367rjgv" path="res://UI/ui_scenes/mouse_icon.tscn" id="4_yjdr5"]
+[ext_resource type="PackedScene" uid="uid://crxykftxbcl1v" path="res://common/scene_soundtrack/soundtrack_scene.tscn" id="7_53i0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
 radius = 7.0
@@ -258,6 +259,8 @@ position = Vector2(13, 0)
 [node name="trail_timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Soundtrack" parent="." instance=ExtResource("7_53i0t")]
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Camera2D/CameraShake" to="Camera2D" method="_on_camera_shake_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjqenvpiqmxu1"]
+[gd_scene load_steps=7 format=3 uid="uid://bjqenvpiqmxu1"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/fx_scene.gd" id="1_d5udn"]
 [ext_resource type="Texture2D" uid="uid://ddvb26v45g2s8" path="res://Sprites/dead_fx.png" id="2_p6nhi"]
+[ext_resource type="AudioStream" uid="uid://bv8ckn5pb8cvj" path="res://common/sfx_explosion/explosion_sfx.tres" id="3_l4h4r"]
 
 [sub_resource type="Animation" id="Animation_cbarw"]
 resource_name = "Active"
@@ -54,3 +55,6 @@ hframes = 5
 libraries = {
 "": SubResource("AnimationLibrary_i52nd")
 }
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_l4h4r")

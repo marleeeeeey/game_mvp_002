@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvtlapo855ht8"]
+
+[ext_resource type="Script" path="res://090_this/scene_gui/gui.gd" id="1_68qgh"]
+[ext_resource type="Texture2D" uid="uid://d1u13tn6safuh" path="res://090_this/art/HeartSpriteSheet.png" id="2_hfr6v"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_68qgh")
+
+[node name="heart_icon" type="Sprite2D" parent="."]
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("2_hfr6v")
+hframes = 5
+
+[node name="ammo_msg" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 66.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 32
+text = "AMMO"
+
+[node name="ammo_amount" type="Label" parent="."]
+offset_left = 136.0
+offset_top = 48.0
+offset_right = 160.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="timer_countdown" type="Label" parent="."]
+offset_left = 136.0
+offset_top = 93.0
+offset_right = 160.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="time_left_msg" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 96.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 32
+text = "TIME"

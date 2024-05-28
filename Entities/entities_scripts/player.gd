@@ -110,3 +110,15 @@ func instance_trail():
 func _on_trail_timer_timeout() -> void:
 	instance_trail()
 	$trail_timer.start()
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemy"):
+		flash()
+		PlayerData.health -= 1
+
+
+func flash():
+	$Sprite2D.material.set_shader_parameter("flash_modifier", 1)
+	await get_tree().create_timer(0.3).timeout
+	$Sprite2D.material.set_shader_parameter("flash_modifier", 0)

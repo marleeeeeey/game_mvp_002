@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		current_state = PlayerStates.DEAD
 	
 	target_mouse()
+	joystick_mouse_controller(delta)
 	
 	match current_state:
 		PlayerStates.MOVE:
@@ -87,6 +88,20 @@ func target_mouse():
 		else:
 			gun_spr.flip_v = true
 			$Sprite2D.flip_h = true
+
+
+# Control mouse via gamepad
+func joystick_mouse_controller(delta):
+	if is_dead == false:	
+		var mouse_sens = 2500.0
+		var direction: Vector2
+		var movement: Vector2
+		
+		direction = Input.get_vector("rs_left", "rs_right", "rs_up", "rs_down")
+		movement = mouse_sens * direction * delta
+		
+		if movement:
+			get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
 
 
 func instance_bullet():

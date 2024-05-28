@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://kk5ce2uy4m72"]
+[gd_scene load_steps=14 format=3 uid="uid://kk5ce2uy4m72"]
 
 [ext_resource type="Script" path="res://Entities/entities_scripts/enemy_1.gd" id="1_htg7u"]
 [ext_resource type="Texture2D" uid="uid://bw7oe3c5u2a3x" path="res://Sprites/enemy_rpg.png" id="1_u5cwl"]
+[ext_resource type="PackedScene" uid="uid://bjqenvpiqmxu1" path="res://Entities/Scenes/FX/fx_scene.tscn" id="2_17pyf"]
+[ext_resource type="PackedScene" uid="uid://30pegk1cuia7" path="res://Interactables/scenes/ammo_1.tscn" id="3_pgrw8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltrie"]
 radius = 7.0
@@ -110,6 +112,8 @@ position = Vector2(0, -2)
 collision_layer = 32
 collision_mask = 8
 script = ExtResource("1_htg7u")
+fx_scene = ExtResource("2_17pyf")
+ammo_scene = ExtResource("3_pgrw8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

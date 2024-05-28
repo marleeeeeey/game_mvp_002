@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var fx_scene = preload("res://Entities/Scenes/FX/fx_scene.tscn")
+@export var fx_scene: PackedScene
 @export var speed = 50
 var direction = Vector2.RIGHT
 

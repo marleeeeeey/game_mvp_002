@@ -4,8 +4,8 @@ var current_state = PlayerStates.MOVE
 enum PlayerStates {MOVE, DEAD}
 var is_dead = false
 
-@onready var bullet_scene = preload("res://Entities/Scenes/Bullet/bullet_1.tscn")
-@onready var trail_scene = preload("res://Entities/Scenes/FX/scent_trail.tscn")
+@export var bullet_scene: PackedScene
+@export var trail_scene: PackedScene
 
 @export var speed: int
 var input_movement = Vector2()

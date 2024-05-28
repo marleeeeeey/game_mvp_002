@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var player_scene: PackedScene = preload("res://Entities/Scenes/Player/player.tscn")
-@onready var exit_scene: PackedScene = preload("res://Interactables/scenes/exit.tscn")
-@onready var enemy_scene: PackedScene = preload("res://Entities/Scenes/Enemies/enemy_1.tscn")
+@export var player_scene: PackedScene
+@export var exit_scene: PackedScene
+@export var enemy_scene: PackedScene
 @onready var tilemap = $TileMap
 @export var border = Rect2(1, 1, 140, 120)
 var walker: WalkerRoom = null

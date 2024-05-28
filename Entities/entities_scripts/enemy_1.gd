@@ -4,8 +4,8 @@ extends CharacterBody2D
 # 2. Apply force into this direction.
 # 3. Shift the girection once again.
 
-@onready var fx_scene = preload("res://Entities/Scenes/FX/fx_scene.tscn")
-@onready var ammo_scene = preload("res://Interactables/scenes/ammo_1.tscn")
+@export var fx_scene: PackedScene
+@export var ammo_scene: PackedScene
 @export var speed = 20
 
 enum EnemyDirection { RIGHT, LEFT, UP, DOWN, CHASE }

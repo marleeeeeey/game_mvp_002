@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bob6ay6manj1p"]
+[gd_scene load_steps=10 format=3 uid="uid://bob6ay6manj1p"]
 
 [ext_resource type="Script" path="res://Levels/level_generator_scripts/main_room.gd" id="1_yltm1"]
+[ext_resource type="PackedScene" uid="uid://8yocrc6iicxu" path="res://Entities/Scenes/Player/player.tscn" id="2_a8fi5"]
+[ext_resource type="PackedScene" uid="uid://xg46qjgi3cxn" path="res://Interactables/scenes/exit.tscn" id="3_f5uqr"]
 [ext_resource type="Script" path="res://UI/ui_scripts/GUI.gd" id="4_586f0"]
+[ext_resource type="PackedScene" uid="uid://kk5ce2uy4m72" path="res://Entities/Scenes/Enemies/enemy_1.tscn" id="4_qsqcl"]
 [ext_resource type="Texture2D" uid="uid://d1u13tn6safuh" path="res://Sprites/HeartSpriteSheet.png" id="5_1rfns"]
 [ext_resource type="Texture2D" uid="uid://b737hvuu6d4ri" path="res://Sprites/complex_tilemap_16px.png" id="6_d1pul"]
 
@@ -637,6 +640,9 @@ sources/0 = SubResource("TileSetAtlasSource_44fad")
 [node name="MainRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_yltm1")
+player_scene = ExtResource("2_a8fi5")
+exit_scene = ExtResource("3_f5uqr")
+enemy_scene = ExtResource("4_qsqcl")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 script = ExtResource("4_586f0")

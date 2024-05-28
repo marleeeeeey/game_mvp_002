@@ -84,6 +84,16 @@ The structure is as follows:
 
 - TODO
 
+## TODO
+
+- Write a devlog.
+- Sound effects.
+- Music.
+- Enemy movent should be more random.
+- Menu.
+- Public to itch.io.
+- Public video to YouTube.
+
 ## Assets
 
 - TODO

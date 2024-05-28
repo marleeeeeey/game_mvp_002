@@ -4,6 +4,8 @@ extends CanvasLayer
 const HEART_ROW_SIZE = 8
 const HEART_OFFSET = 16
 
+@onready var timer = $"../Timer"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +22,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$ammo_amount.text = var_to_str(PlayerData.ammo)
+	$timer_countdown.text = var_to_str(timer.time_left).pad_decimals(0)
 
 	for heart in $heart_icon.get_children():
 		var index = heart.get_index()

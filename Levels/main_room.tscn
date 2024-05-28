@@ -647,13 +647,13 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_1rfns")
 hframes = 5
 
-[node name="ammo" type="Label" parent="GUI"]
+[node name="ammo_msg" type="Label" parent="GUI"]
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 66.0
 offset_bottom = 71.0
 theme_override_font_sizes/font_size = 32
-text = "AMMO:"
+text = "AMMO"
 
 [node name="ammo_amount" type="Label" parent="GUI"]
 offset_left = 136.0
@@ -662,6 +662,22 @@ offset_right = 160.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 32
 text = "0"
+
+[node name="timer_countdown" type="Label" parent="GUI"]
+offset_left = 136.0
+offset_top = 93.0
+offset_right = 160.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="time_left_msg" type="Label" parent="GUI"]
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 96.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 32
+text = "TIME"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -689,3 +705,9 @@ scale = Vector2(3.48, 1)
 anchor_mode = 0
 enabled = false
 zoom = Vector2(0.5, 0.5)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

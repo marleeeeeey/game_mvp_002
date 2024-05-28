@@ -67,3 +67,7 @@ func instance_enemy():
 		var enemy = enemy_scene.instantiate()
 		enemy.position = (map.pick_random() * border.position) * 16
 		add_child(enemy)
+
+
+func _on_timer_timeout() -> void:
+	get_tree().reload_current_scene()

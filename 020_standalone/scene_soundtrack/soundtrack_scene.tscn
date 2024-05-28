@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://crxykftxbcl1v"]
-
-[ext_resource type="AudioStream" uid="uid://dk2g563ua4kfj" path="res://020_standalone/scene_soundtrack/art/soundtrack.mp3" id="1_5xfea"]
-
-[node name="Soundtrack" type="AudioStreamPlayer"]
-process_mode = 3
-stream = ExtResource("1_5xfea")
-volume_db = -8.0
-autoplay = true

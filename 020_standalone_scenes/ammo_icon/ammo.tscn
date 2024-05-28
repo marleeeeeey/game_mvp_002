@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://30pegk1cuia7"]
+
+[ext_resource type="Script" path="res://020_standalone_scenes/ammo_icon/ammo.gd" id="1_0f5x5"]
+[ext_resource type="Texture2D" uid="uid://cdqawm757qrhd" path="res://020_standalone_scenes/ammo_icon/art/ammo.png" id="2_1hbg4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75b5y"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_t54nl"]
+resource_name = "Acrive"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_7kcb2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_456a5"]
+_data = {
+"Acrive": SubResource("Animation_t54nl"),
+"RESET": SubResource("Animation_7kcb2")
+}
+
+[node name="Ammo1" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_0f5x5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_1hbg4")
+hframes = 5
+
+[node name="ammo_collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_75b5y")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_456a5")
+}
+autoplay = "Acrive"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

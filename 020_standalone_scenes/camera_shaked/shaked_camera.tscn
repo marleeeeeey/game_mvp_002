@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkea2vqvy2ffg"]
+
+[ext_resource type="Script" path="res://020_standalone_scenes/camera_shaked/camera.gd" id="1_no4pd"]
+
+[node name="ShakedCamera" type="Camera2D"]
+position = Vector2(0, -13)
+zoom = Vector2(3, 3)
+script = ExtResource("1_no4pd")
+
+[node name="CameraShake" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CameraShake" to="." method="_on_camera_shake_timeout"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bob6ay6manj1p"]
 
 [ext_resource type="Script" path="res://090_this/main.gd" id="1_5qvtn"]
-[ext_resource type="PackedScene" uid="uid://8yocrc6iicxu" path="res://030_deps/scene_player/player.tscn" id="2_fitdm"]
-[ext_resource type="PackedScene" uid="uid://xg46qjgi3cxn" path="res://020_standalone/scene_exit_portal/exit_portal.tscn" id="3_p16my"]
-[ext_resource type="PackedScene" uid="uid://kk5ce2uy4m72" path="res://030_deps/scene_enemy/enemy_1.tscn" id="4_3wk51"]
+[ext_resource type="PackedScene" uid="uid://8yocrc6iicxu" path="res://030_deps_scenes/player/player.tscn" id="2_fitdm"]
+[ext_resource type="PackedScene" uid="uid://xg46qjgi3cxn" path="res://020_standalone_scenes/exit_portal/exit_portal.tscn" id="3_p16my"]
+[ext_resource type="PackedScene" uid="uid://kk5ce2uy4m72" path="res://030_deps_scenes/enemy/enemy.tscn" id="4_3wk51"]
 [ext_resource type="PackedScene" uid="uid://cvtlapo855ht8" path="res://090_this/scene_gui/gui.tscn" id="5_1aw4s"]
 [ext_resource type="Texture2D" uid="uid://b737hvuu6d4ri" path="res://090_this/art/complex_tilemap_16px.png" id="7_pqmpb"]
 

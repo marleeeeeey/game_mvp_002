@@ -10,13 +10,14 @@ var step_history: Array = []
 var ground_layer = 0  # Reference specific png in tilemap. 0 - is the first.
 
 @onready var tilemap = $TileMap
+var player = null
 
 
 func _ready() -> void:
 	randomize()
 	generate_level()
 	$Timer.start()
-	$GUI.set_timer_object($Timer)
+	$GUI.initialize(player, $Timer)
 
 
 func generate_level():
@@ -53,7 +54,7 @@ func _input(event):
 
 
 func instance_player():
-	var player = player_scene.instantiate()
+	player = player_scene.instantiate()
 	add_child(player)
 	# Spawn player in the first room.
 	player.position = step_history.pop_front() * 16

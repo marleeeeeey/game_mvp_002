@@ -16,13 +16,16 @@ var input_movement = Vector2()
 var pos
 var rot
 
+var health = 4
+var ammo = 50
+
 
 func _ready() -> void:
 	pass  # Replace with function body.
 
 
 func _process(delta: float) -> void:
-	if PlayerData.health <= 0:
+	if health <= 0:
 		current_state = PlayerStates.DEAD
 	
 	target_mouse()
@@ -47,8 +50,8 @@ func movement(delta):
 	if input_movement == Vector2.ZERO:
 		velocity = Vector2.ZERO
 
-	if Input.is_action_just_pressed("ui_shoot") and PlayerData.ammo > 0:
-		PlayerData.ammo -= 1
+	if Input.is_action_just_pressed("ui_shoot") and ammo > 0:
+		ammo -= 1
 		instance_bullet()
 
 	move_and_slide()
@@ -70,7 +73,7 @@ func dead():
 	await get_tree().create_timer($anim.current_animation_length).timeout
 	if get_tree():
 		get_tree().reload_current_scene()
-		PlayerData.health += 4
+		health += 4
 		is_dead = false
 
 
@@ -130,10 +133,14 @@ func _on_trail_timer_timeout() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
 		flash()
-		PlayerData.health -= 1
+		health -= 1
 
 
 func flash():
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 1)
 	await get_tree().create_timer(0.3).timeout
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 0)
+
+
+func pick_ammo(count: int):
+	ammo += count

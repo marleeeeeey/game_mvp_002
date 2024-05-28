@@ -5,12 +5,20 @@ const HEART_ROW_SIZE = 8
 const HEART_OFFSET = 16
 
 var timer: Timer = null
+var player = null
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+# HACK: This method should be called after scene.instansiate()
+func initialize(player_object, timer_object: Timer) -> void:
+	player = player_object
+	timer = timer_object
+	
+	init_hearts_icons()
+
+
+func init_hearts_icons():
 	# Create all hearts in one place. Then they will be placed in process method.
-	for i in PlayerData.health:
+	for i in player.health:
 		# Create new sprite for new heart
 		var new_heart = Sprite2D.new()
 		# Copy heart options from original heart_icon
@@ -19,9 +27,8 @@ func _ready() -> void:
 		$heart_icon.add_child(new_heart)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$ammo_amount.text = var_to_str(PlayerData.ammo)
+	$ammo_amount.text = var_to_str(player.ammo)
 	$timer_countdown.text = var_to_str(timer.time_left).pad_decimals(0)
 
 	for heart in $heart_icon.get_children():
@@ -30,14 +37,18 @@ func _process(delta: float) -> void:
 		var y = (index / HEART_ROW_SIZE) * HEART_OFFSET
 		heart.position = Vector2(x, y)
 
-		var last_heart = floor(PlayerData.health)
+		var last_heart = floor(player.health)
 		if index > last_heart:
 			heart.frame = 0
 		if index == last_heart:
-			heart.frame = (PlayerData.health - last_heart) * 4
+			heart.frame = (player.health - last_heart) * 4
 		if index < last_heart:
 			heart.frame = 4
 
 
 func set_timer_object(t: Timer):
 	timer = t
+
+
+func set_player_object(p):
+	player = p

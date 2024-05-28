@@ -4,8 +4,7 @@ extends CanvasLayer
 const HEART_ROW_SIZE = 8
 const HEART_OFFSET = 16
 
-# TODO: remove this dependency.
-@onready var timer = $"../Timer"
+var timer: Timer = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,3 +37,7 @@ func _process(delta: float) -> void:
 			heart.frame = (PlayerData.health - last_heart) * 4
 		if index < last_heart:
 			heart.frame = 4
+
+
+func set_timer_object(t: Timer):
+	timer = t

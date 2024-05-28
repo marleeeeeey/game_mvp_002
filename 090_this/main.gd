@@ -15,6 +15,8 @@ var ground_layer = 0  # Reference specific png in tilemap. 0 - is the first.
 func _ready() -> void:
 	randomize()
 	generate_level()
+	$Timer.start()
+	$GUI.set_timer_object($Timer)
 
 
 func generate_level():

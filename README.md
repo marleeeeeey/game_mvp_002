@@ -87,11 +87,9 @@ The structure is as follows:
 ## TODO
 
 - Write a devlog.
-- Sound effects.
-- Music.
-- Enemy movent should be more random.
-- Menu.
-- Public to itch.io.
+- Sound effects for dead.
+- Randomness for the enemy movement.
+- Pause Menu.
 - Public video to YouTube.
 
 ## Assets

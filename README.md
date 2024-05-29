@@ -6,9 +6,9 @@ https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-god
 - 8 Days of development
 - Development start date: 2024-05-24
 - MVP planned release date: 2024-06-01
-- Name: TODO
-- Learning goal: TODO
-- Release link: TODO
+- Name: Cave Roguelike
+- Learning goal: Learn how to generate levels procedurally.
+- Release link: https://marleeeeeey.itch.io/cave-roguelike
 
 ## Gameplay overview
 

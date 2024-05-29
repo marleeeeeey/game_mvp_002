@@ -62,8 +62,12 @@ The structure is as follows:
 - GodotProjectFoler
   - 010_globals (keep link to the Camera2D, ...)
     - globals.gd
-  - 010_scripts (reusable scripts without scenes)
+  - 015_scripts (reusable scripts without scenes)
     - *.gd
+  - 017_standalone_tilesets (tilesets without dependencies)
+    - <name>
+      - *.tres
+      - *.png
   - 020_standalone_scenes (scenes without dependencies)
     - <name>
       - *.tres

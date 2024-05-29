@@ -1,6 +1,7 @@
-# Game MVP 002
+# Game MVP 002 - Cave Roguelike
 
-TODO (short description): https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-godot-4/
+The game is implemented during the course "Create a Procedurally Generated 2D Roguelike in Godot 4" by Jean Vermeersch.
+https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-godot-4/
 
 - 8 Days of development
 - Development start date: 2024-05-24
@@ -11,35 +12,45 @@ TODO (short description): https://www.udemy.com/course/create-a-procedurally-gen
 
 ## Gameplay overview
 
-- TODO
+- Player controls the character with a gun.
+- Player kills enemies in procedurally generated levels.
+- Player should find the exit to the next level in time.
 
 ## Controls
 
 - Gamepad (preferred)
   - Left stick - move the player.
-  - A - place a turret.
-  - X - shoot.
+  - A - shoot.
   - Start - pause the game.
 - Keyboard:
   - W, A, S, D - move the player.
-  - Space - place a turret.
-  - Enter - shoot.
-  - Esc - pause the game.
-
-## Gameplay details
-
-- TODO
+  - Mouse - aim.
+  - LMB - shoot.
 
 ## Godot Guidelines
 
-- Use push_error and push_warning for errors and warnings.
-- Edotor Settings -> General -> Debug -> Auto Switch to Remote Scene Tree - ENABLE.
 - Project Settings -> Display -> Window -> Always on Top - ENABLE.
-- Use `Scene -> Save Branch As Scene` to simplify the scene and reuse it.
+- Save vieport size on rezising: Project Settings -> Display -> Window -> Stretch: Mode = Viewport, Aspect = Keep.
+- Scene link is better to do via UI (drag and drop) instead of `preload`, bacause IDE will update paths if they change.
 - Try to use less `@export` variables. Prioritize: local variables -> class variables -> exported variables.
-- `Input.IsActionJustPressed(...)` (this frame only) для прыжка вместо `Input.IsActionPressed(...)`.
-- Signal connections via code is better than via editor (UI) - it is more obvious.
-- Use Debug Monitor for performance monitoring. It calls a callable object every second and writes int and float values.
+- Use push_error and push_warning for errors and warnings.
+- Use `Scene -> Save Branch As Scene` to simplify the scene and reuse it.
+- `Input.IsActionJustPressed(...)` (this frame only) for jumping instead of `Input.IsActionPressed(...)`.
+- Drug and drop scene elements to the script to create variables.
+- `Help -> Search` or `F1` - to find the documentation for any class or method.
+- Create small methods like `instance_bullet()`, `animations()`, `target_mouse()`.
+- Use global coordinates (bullet.global_position) to simplify the calculations in the game.
+- `get_tree().root` - to get The SceneTree's root Window.
+- Use Node2D.ZIndex to set the order of rendering. 1 - top, -1 - bottom.
+- Signature of contructor: `func _init(starting_position, new_borders) -> void:`.
+- Instantiate class: `var bullet = Bullet.new()`.
+- `randomize()` - to randomize the random number generator.
+- `get_tree().reload_current_scene()` - to reload the current scene.
+- Use groups (`Node -> Group -> Add`) for requesting/filtering nodes by group name.
+- `get_tree().root.add_child(trail)` - set new object independent from the parent.
+- `object.has_method("smash")` - to check if the object has a method.
+- `self` - to refer to the current object.
+- `lerp` - to interpolate between two values.
 
 ## Files structure
 
@@ -49,44 +60,61 @@ The structure is as follows:
 
 ```
 - GodotProjectFoler
-  - common (reusable scenes, tilesets)
-	- tileset_[sqr|iso|hex]_<name> (reusable tileset)
-	  - *.tres
-	  - *.png
-	- scene_<name> (reusable scene)
-	  - *.tres
-	  - *.gd
-	  - *.tscn
-	  - art/
-		- *.png
-		- *.mp3
-	- sfx_<name> (reusable sound effect)
-	  - art/
-		- *.mp3
-		- *.wav
-	  - <name>_sfx.tres
-  - this (game specific scenes, scripts and art)
-	- main.tscn
-	- main.gd
-	- <name>.tscn
-	- <name>.gd
-	- art
-	  - *.png
-	  - *.mp3
-	  - *.wav
+  - 010_globals (keep link to the Camera2D, ...)
+    - globals.gd
+  - 010_scripts (reusable scripts without scenes)
+    - *.gd
+  - 020_standalone_scenes (scenes without dependencies)
+    - <name>
+      - *.tres
+      - *.gd
+      - *.tscn
+      - art/
+        - *.png
+        - *.mp3
+        - *.wav
+  - 030_deps_scenes (scenes with dependencies from standalone scenes)
+    - <name>
+      - *.tres
+      - *.gd
+      - *.tscn
+      - art/
+        - *.png
+        - *.mp3
+        - *.wav
+  - 090_this (game specific scenes, scripts and art)
+    - main.tscn
+    - main.gd
+    - <name>.tscn
+    - <name>.gd
+    - art
+      - *.png
+      - *.mp3
+      - *.wav
 ```
-
-**sqr** - square tileset.
-**iso** - isometric tileset.
-**hex** - hexagonal tileset.
 
 ## Devlog
 
-- TODO
+- Initial commit : 2024-05-24
+- Import sprites and create the main scene : 2024-05-24
+- Create the player with gun controlable by the mouse : 2024-05-24
+- Player dead animation : 2024-05-25
+- Initial GUI : 2024-05-26
+- Prepare tileset for auto-tiling : 2024-05-26
+- Create Walker algorithm for procedural generation : 2024-05-26
+- Spawn player and exit icons : 2024-05-27
+- Create second tilemap for the floor : 2024-05-27
+- Create the enemy which is moved randomly : 2024-05-28
+- Add exposion effect when the enemy is killed : 2024-05-28
+- Add scent trail for the player. The enemy follows the scent trail : 2024-05-28
+- Enemy catching the player with light animation : 2024-05-28
+- Create camera shake effect when the player bullet hits : 2024-05-29
+- Update GUI, add sound effects and music : 2024-05-28
+- Refactoring: reusable scenes, remove global variables : 2024-05-29
+- Final refactoring, docs : 2024-05-30
 
 ## TODO
 
-- Write a devlog.
 - Sound effects for dead.
 - Randomness for the enemy movement.
 - Pause Menu.
@@ -94,8 +122,8 @@ The structure is as follows:
 
 ## Assets
 
-- TODO
+- https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-godot-4/
 
 ## Tools
 
-- TODO
+- https://sfxr.me/ - SFXR Sound Generator

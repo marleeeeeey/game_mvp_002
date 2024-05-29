@@ -11,7 +11,7 @@ enum EnemyDirection { RIGHT, LEFT, UP, DOWN, CHASE }
 @export var speed = 20
 
 var new_direction = EnemyDirection.RIGHT
-var change_direction
+var change_direction: int
 
 var following_global_position = Vector2.ZERO
 
@@ -59,20 +59,10 @@ func move_down():
 
 
 func choose_direction():
-	change_direction = randi() % 4
-	random_direction()
-
-
-func random_direction():
-	match change_direction:
-		0:
-			new_direction = EnemyDirection.RIGHT
-		1:
-			new_direction = EnemyDirection.LEFT
-		2:
-			new_direction = EnemyDirection.UP
-		3:
-			new_direction = EnemyDirection.DOWN
+	var directions = [
+		EnemyDirection.RIGHT, EnemyDirection.LEFT, EnemyDirection.UP, EnemyDirection.DOWN
+	]
+	new_direction = directions[randi() % directions.size()]
 
 
 func _on_timer_timeout() -> void:

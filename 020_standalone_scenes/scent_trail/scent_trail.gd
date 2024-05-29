@@ -1,7 +1,6 @@
 extends Area2D
 
 
-
 func remove_trail():
 	queue_free()
 

@@ -12,7 +12,7 @@ var player = null
 func initialize(player_object, timer_object: Timer) -> void:
 	player = player_object
 	timer = timer_object
-	
+
 	init_hearts_icons()
 
 

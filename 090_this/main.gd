@@ -8,9 +8,9 @@ extends Node2D
 var walker: WalkerAlgo = null
 var step_history: Array = []
 var ground_layer = 0  # Reference specific png in tilemap. 0 - is the first.
+var player = null
 
 @onready var tilemap = $TileMap
-var player = null
 
 
 func _ready() -> void:

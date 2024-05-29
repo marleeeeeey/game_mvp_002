@@ -1,36 +1,29 @@
 extends CharacterBody2D
 
-var current_state = PlayerStates.MOVE
-enum PlayerStates {MOVE, DEAD}
-var is_dead = false
+enum PlayerStates { MOVE, DEAD }
 
 @export var bullet_scene: PackedScene
 @export var trail_scene: PackedScene
-
 @export var speed: int
+
 var input_movement = Vector2()
+var current_state = PlayerStates.MOVE
+var is_dead = false
+var health = 4
+var ammo = 50
 
 @onready var gun = $gun_handler
 @onready var gun_spr = $gun_handler/gun_sprite
 @onready var bullet_point = $gun_handler/bullet_point
-var pos
-var rot
-
-var health = 4
-var ammo = 50
-
-
-func _ready() -> void:
-	pass  # Replace with function body.
 
 
 func _process(delta: float) -> void:
 	if health <= 0:
 		current_state = PlayerStates.DEAD
-	
+
 	target_mouse()
 	joystick_mouse_controller(delta)
-	
+
 	match current_state:
 		PlayerStates.MOVE:
 			movement(delta)
@@ -80,9 +73,8 @@ func dead():
 func target_mouse():
 	if is_dead == false:
 		var mouse_movement = get_global_mouse_position()
-		pos = global_position
 		gun.look_at(mouse_movement)
-		rot = rad_to_deg((mouse_movement - pos).angle())
+		var rot = rad_to_deg((mouse_movement - global_position).angle())
 
 		# Flip gun
 		if rot >= -90 and rot <= 90:
@@ -95,14 +87,14 @@ func target_mouse():
 
 # Control mouse via gamepad
 func joystick_mouse_controller(delta):
-	if is_dead == false:	
+	if is_dead == false:
 		var mouse_sens = 2500.0
 		var direction: Vector2
 		var movement: Vector2
-		
+
 		direction = Input.get_vector("rs_left", "rs_right", "rs_up", "rs_down")
 		movement = mouse_sens * direction * delta
-		
+
 		if movement:
 			get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
 
@@ -113,8 +105,8 @@ func instance_bullet():
 	bullet.direction = bullet_point.global_position - gun.global_position
 	bullet.global_position = bullet_point.global_position
 	get_tree().root.add_child(bullet)
-	
-	
+
+
 func reset_states():
 	current_state = PlayerStates.MOVE
 

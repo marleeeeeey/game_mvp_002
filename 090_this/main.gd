@@ -1,77 +1,47 @@
 extends Node2D
 
-@export var player_scene: PackedScene
-@export var exit_scene: PackedScene
-@export var enemy_scene: PackedScene
-@export var border := Rect2(1, 1, 140, 120)
+const GAME_NAME = "CAVE ROGUELIKE"
 
-var walker: WalkerAlgo = null
-var step_history: Array = []
-var ground_layer = 0  # Reference specific png in tilemap. 0 - is the first.
-var player = null
+@export var game_logic_scene: PackedScene
+@export var pause_message_scene: PackedScene
 
-@onready var tilemap = $TileMap
-
+# Create game_logic when game begin. Destroy at the end.
+var game_logic: GameLogic = null
+var pause_message = null
 
 func _ready() -> void:
-	randomize()
-	generate_level()
-	$Timer.start()
-	$GUI.initialize(player, $Timer)
+	# Init PauseMenu
+	pause_message = pause_message_scene.instantiate()
+	add_child(pause_message)
+	
+	# Loading level
+	pause_message.show_text(GAME_NAME, "", "press space to start")
+	reload_game_logic()
 
 
-func generate_level():
-	walker = WalkerAlgo.new(Vector2(3, 2), border)
-	step_history = walker.walk(1500)
-
-	# List of empty cells.
-	var using_cells: Array = []
-
-	# Returns a Vector2i array with the positions of all cells containing a tile in the given layer.
-	var all_cells: Array = tilemap.get_used_cells(ground_layer)
-
-	# Clear step_history and destroy walker.
-	tilemap.clear()
-	walker.queue_free()
-
-	for tile in all_cells:
-		if !step_history.has(Vector2(tile.x, tile.y)):
-			using_cells.append(tile)
-
-	# Update all the cells in the cells coordinates array
-	# so that they use the given terrain for the given terrain_set.
-	tilemap.set_cells_terrain_connect(ground_layer, using_cells, ground_layer, ground_layer, false)
-	tilemap.set_cells_terrain_path(ground_layer, using_cells, ground_layer, ground_layer, false)
-
-	instance_player()
-	instance_exit()
-	instance_enemies()
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pause_message.show_text("PAUSE", "", "press Q to exit game")
 
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().reload_current_scene()
+func reload_game_logic():
+	if game_logic:
+		game_logic.queue_free()
+	_create_game_logic()
 
 
-func instance_player():
-	player = player_scene.instantiate()
-	add_child(player)
-	# Spawn player in the first room.
-	player.position = step_history.pop_front() * 16
+func _on_game_over() -> void:
+	pause_message.show_text("GAME OVER", GAME_NAME, "press space to start")
+	reload_game_logic()
 
 
-func instance_exit():
-	var exit = exit_scene.instantiate()
-	add_child(exit)
-	exit.position = walker.get_end_room().position * 16
+func on_level_complete():
+	pause_message.show_text("LEVEL COMPLETE", GAME_NAME, "press space to start")
+	reload_game_logic()
 
 
-func instance_enemies():
-	for i in range(32):
-		var enemy = enemy_scene.instantiate()
-		enemy.position = (step_history.pick_random() * border.position) * 16
-		add_child(enemy)
-
-
-func _on_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+func _create_game_logic() -> void:
+	game_logic = game_logic_scene.instantiate()
+	add_child(game_logic)
+	game_logic.on_game_over.connect(_on_game_over)
+	game_logic.on_level_complete.connect(on_level_complete)

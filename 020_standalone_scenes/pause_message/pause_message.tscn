@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhom3abs5q61i"]
+
+[ext_resource type="Script" path="res://020_standalone_scenes/pause_message/pause_message.gd" id="1_oxt5s"]
+[ext_resource type="FontFile" uid="uid://bg1o2hwhfxg3m" path="res://020_standalone_scenes/pause_message/fonts/Xolonium-Regular.ttf" id="2_udcgj"]
+[ext_resource type="Material" uid="uid://bq5histkuvjkf" path="res://020_standalone_scenes/pause_message/art/blur_shader_material.tres" id="2_xrfkh"]
+[ext_resource type="AudioStream" uid="uid://c2jgpqpbhu8ku" path="res://020_standalone_scenes/pause_message/art/pick2.wav" id="4_8rd0f"]
+
+[sub_resource type="Animation" id="Animation_n5dwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hwr4a"]
+resource_name = "end_pause"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e0kx6"]
+resource_name = "start_pause"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.0398302),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_43kcs"]
+_data = {
+"RESET": SubResource("Animation_n5dwp"),
+"end_pause": SubResource("Animation_hwr4a"),
+"start_pause": SubResource("Animation_e0kx6")
+}
+
+[node name="PausePanel" type="CanvasLayer"]
+script = ExtResource("1_oxt5s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_xrfkh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 69.0
+offset_bottom = 224.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_udcgj")
+theme_override_font_sizes/font_size = 48
+text = "DEBUG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterLabel" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -154.5
+offset_bottom = 154.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_udcgj")
+theme_override_font_sizes/font_size = 128
+text = "DEBUG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BottomLabel" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 120.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_udcgj")
+theme_override_font_sizes/font_size = 48
+text = "DEBUG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_43kcs")
+}
+
+[node name="PauseSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8rd0f")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

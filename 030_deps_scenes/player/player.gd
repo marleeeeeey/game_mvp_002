@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal on_player_died
+
 enum PlayerStates { MOVE, DEAD }
 
 @export var bullet_scene: PackedScene
@@ -10,7 +12,7 @@ var input_movement = Vector2()
 var current_state = PlayerStates.MOVE
 var is_dead = false
 var health = 4
-var ammo = 50
+var ammo = 5
 
 @onready var gun = $gun_handler
 @onready var gun_spr = $gun_handler/gun_sprite
@@ -65,9 +67,9 @@ func dead():
 	# Wait end of animation
 	await get_tree().create_timer($anim.current_animation_length).timeout
 	if get_tree():
-		get_tree().reload_current_scene()
 		health += 4
 		is_dead = false
+		on_player_died.emit()
 
 
 func target_mouse():
@@ -93,10 +95,12 @@ func joystick_mouse_controller(delta):
 		var movement: Vector2
 
 		direction = Input.get_vector("rs_left", "rs_right", "rs_up", "rs_down")
-		movement = mouse_sens * direction * delta
 
-		if movement:
-			get_viewport().warp_mouse(get_viewport().get_mouse_position() + movement)
+		if direction != Vector2.ZERO:
+			# TODO: fix it. Use global_position of player to define cursor pos
+			var viewport = get_viewport()
+			var center = viewport.get_visible_rect().size / 2
+			get_viewport().warp_mouse(center + direction.normalized() * 150)
 
 
 func instance_bullet():
@@ -130,7 +134,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func flash():
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 1)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.5).timeout
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 0)
 
 

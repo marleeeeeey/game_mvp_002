@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://8yocrc6iicxu"]
+[gd_scene load_steps=17 format=3 uid="uid://8yocrc6iicxu"]
 
 [ext_resource type="Script" path="res://030_deps_scenes/player/player.gd" id="1_d13tk"]
 [ext_resource type="Texture2D" uid="uid://brmnh8lbc6i61" path="res://030_deps_scenes/player/art/Player_metroid.png" id="1_jnwq3"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://gui5wgmawcub" path="res://020_standalone_scenes/scent_trail/scent_trail.tscn" id="3_yqpmv"]
 [ext_resource type="Texture2D" uid="uid://b3fq3kvklme8e" path="res://030_deps_scenes/player/art/gun_1.png" id="6_bd5hm"]
 [ext_resource type="PackedScene" uid="uid://glnym367rjgv" path="res://020_standalone_scenes/mouse_icon/mouse_icon.tscn" id="7_046qd"]
-[ext_resource type="PackedScene" uid="uid://crxykftxbcl1v" path="res://020_standalone_scenes/soundtrack/soundtrack_scene.tscn" id="8_j5ao1"]
 [ext_resource type="PackedScene" uid="uid://bkea2vqvy2ffg" path="res://020_standalone_scenes/camera_shaked/shaked_camera.tscn" id="9_8qj2o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sedtn"]
@@ -255,8 +254,6 @@ position = Vector2(13, 0)
 [node name="trail_timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
-
-[node name="Soundtrack" parent="." instance=ExtResource("8_j5ao1")]
 
 [node name="ShakedCamera" parent="." instance=ExtResource("9_8qj2o")]
 

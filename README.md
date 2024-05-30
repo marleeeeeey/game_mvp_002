@@ -9,6 +9,7 @@ https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-god
 - Name: Cave Roguelike
 - Learning goal: Learn how to generate levels procedurally.
 - Release link: https://marleeeeeey.itch.io/cave-roguelike
+- YouTube link: https://youtu.be/qk2FW4dJBd0
 
 ## Gameplay overview
 
@@ -116,13 +117,15 @@ The structure is as follows:
 - Update GUI, add sound effects and music : 2024-05-28
 - Refactoring: reusable scenes, remove global variables : 2024-05-29
 - Final refactoring, docs : 2024-05-30
+- Pause menu, game over screen : 2024-05-30
+- Fast fix of gamepad control : 2024-05-30
+- Public video to YouTube : 2024-05-30
 
 ## TODO
 
+- Improve gamepad control.
 - Sound effects for dead.
 - Randomness for the enemy movement.
-- Pause Menu.
-- Public video to YouTube.
 
 ## Assets
 

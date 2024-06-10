@@ -28,7 +28,7 @@ https://www.udemy.com/course/create-a-procedurally-generated-2d-roguelike-in-god
   - Mouse - aim.
   - LMB - shoot.
 
-## Godot Guidelines
+## Godot Guidelines from Course
 
 - Project Settings -> Display -> Window -> Always on Top - ENABLE.
 - Save vieport size on rezising: Project Settings -> Display -> Window -> Stretch: Mode = Viewport, Aspect = Keep.
@@ -98,34 +98,35 @@ The structure is as follows:
       - *.wav
 ```
 
-## Devlog
+## Development Log
 
-- Initial commit : 2024-05-24
-- Import sprites and create the main scene : 2024-05-24
-- Create the player with gun controlable by the mouse : 2024-05-24
-- Player dead animation : 2024-05-25
-- Initial GUI : 2024-05-26
-- Prepare tileset for auto-tiling : 2024-05-26
-- Create Walker algorithm for procedural generation : 2024-05-26
-- Spawn player and exit icons : 2024-05-27
-- Create second tilemap for the floor : 2024-05-27
-- Create the enemy which is moved randomly : 2024-05-28
-- Add exposion effect when the enemy is killed : 2024-05-28
-- Add scent trail for the player. The enemy follows the scent trail : 2024-05-28
-- Enemy catching the player with light animation : 2024-05-28
-- Create camera shake effect when the player bullet hits : 2024-05-29
-- Update GUI, add sound effects and music : 2024-05-28
-- Refactoring: reusable scenes, remove global variables : 2024-05-29
-- Final refactoring, docs : 2024-05-30
-- Pause menu, game over screen : 2024-05-30
-- Fast fix of gamepad control : 2024-05-30
-- Public video to YouTube : 2024-05-30
+- Initial commit : #2024-05-24
+- Import sprites and create the main scene : #2024-05-24
+- Create the player with gun controlable by the mouse : #2024-05-24
+- Player dead animation : #2024-05-25
+- Initial GUI : #2024-05-26
+- Prepare tileset for auto-tiling : #2024-05-26
+- Create Walker algorithm for procedural generation : #2024-05-26
+- Spawn player and exit icons : #2024-05-27
+- Create second tilemap for the floor : #2024-05-27
+- Create the enemy which is moved randomly : #2024-05-28
+- Add exposion effect when the enemy is killed : #2024-05-28
+- Add scent trail for the player. The enemy follows the scent trail : #2024-05-28
+- Enemy catching the player with light animation : #2024-05-28
+- Create camera shake effect when the player bullet hits : #2024-05-29
+- Update GUI, add sound effects and music : #2024-05-28
+- Refactoring: reusable scenes, remove global variables : #2024-05-29
+- Final refactoring, docs : #2024-05-30
+- Pause menu, game over screen : #2024-05-30
+- Fast fix of gamepad control : #2024-05-30
+- Public video to YouTube : #2024-05-30
 
-## TODO
+## TODO list
 
 - Improve gamepad control.
 - Sound effects for dead.
 - Randomness for the enemy movement.
+- On game start player should spawn in safe place.
 
 ## Assets
 
@@ -134,3 +135,17 @@ The structure is as follows:
 ## Tools
 
 - https://sfxr.me/ - SFXR Sound Generator
+
+## Review of mine project
+
+- It is almost "Hotline Miami" (Sergey Mazurov)
+
+## My review of the course
+
+This if my first course in Godot and I am very happy with it. Before that course I read the documentation and did my own game. But anyway I found a lot of new information about procedure generation, shaders, camera shaking, and other things.
+
+But I would improve the following:
+1. Name conventions for the variables, classes, items in game tree.
+2. Use Input.get_vector everywhere if possible.
+3. More strict about types in the code and using `: Type` for external variable to the script. It makes autocomplete better.
+4. Add lectures about creating menus, dialogs, and settings.

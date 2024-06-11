@@ -136,9 +136,34 @@ The structure is as follows:
 
 - https://sfxr.me/ - SFXR Sound Generator
 
-## Review of mine project
+## Game Reviews
 
-- It is almost "Hotline Miami" (Sergey Mazurov)
+### Sergey Mazurov (telegram)
+
+- It is almost "Hotline Miami"
+
+### By DefinitlyNotABot (itch.io)
+
+I played this game a few rounds and the gameplay and game mechanics are neat.
+
+One thing I noticed is the time it takes to load after dying or winning. The game freezes for a short amount of time before the menu is displayed #TODO. For context, I played the browser version, not the one to download.
+
+Another thing that happened was that a chicken got spawned right next to the player in one instance #TODO, so I instantly lost a heart. Maybe alter the spawn mechanic so the first room can't have a chicken.
+
+Thirdly, and this is just my own opinion, it sometimes feels long to wander around aimlessly and randomly stumble into the goal. To change this, maybe you could add a gradient to the color #TODO, so it changes toward the goal. This would at least give some sort of direction. To combat the fact that this would make the game easier, you could increase the spawn rate of enemies the closer you get to the exit #TODO. To then still have the player explore the rest of the dungeon, maybe scatter around power-ups they can collect to have it easier on their way to the goal #TODO.
+Having multiple types of enemies could also lead to a more interesting gameplay.
+
+I see great potential in this game and I'd enjoy to see it grow
+
+**Answer**
+
+Thank you for review.
+The first two comments are known issues.
+Colored direction, encrease spawn-rate and power-ups are good ideas. I will think about it.
+
+Currently I have a plan to publish a lot of MVPs in short time to learn. Now I switch from Godot to Unity. Here is the link to the next game: https://marleeeeeey.itch.io/delivery-driver.
+
+My plan is create 10-15 MVPs in different engines and genres and then start a big project from scratch or continue one of the MVPs.
 
 ## My review of the course
 
